@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Selector Plugin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="color"] {
+      width: 50px;
+      height: 30px;
+      border: none;
+      outline: none;
+      padding: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <label for="colorPicker">Select a new color:</label>
+  <input type="color" id="colorPicker" value="#FF0000">
+  <button id="applyButton">Apply New Color</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const colorPicker = document.getElementById('colorPicker');
+      const applyButton = document.getElementById('applyButton');
+
+      applyButton.addEventListener('click', function() {
+        const selectedColor = colorPicker.value;
+        parent.postMessage({ pluginMessage: { type: 'applyColor', color: selectedColor } }, '*');
+      });
+    });
+  </script>
+</body>
+</html>
